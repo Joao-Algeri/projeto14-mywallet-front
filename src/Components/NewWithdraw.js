@@ -1,9 +1,20 @@
 import styled from "styled-components"
+import dayjs from 'dayjs';
+import { Navigate, useNavigate } from "react-router-dom";
 import { UseForm } from "./Useform";
+import { useContext } from "react";
 export default function NewWithdraw(){
     const [form, handleForm] = UseForm({})
+    const navigate = useNavigate();
     function SendForm(event) {
         event.preventDefault();
+        LoggingIn()
+    }
+    function LoggingIn(){
+        const data=dayjs().format("DD/MM")
+        const newForm=[{...form,date:data,type:"withdraw"}]
+        // const request=axios.post("localhost:5000/transactions",newForm[0])        
+        navigate("/home")
     }
     return(
     <Content>

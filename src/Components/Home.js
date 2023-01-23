@@ -1,10 +1,40 @@
 import styled from "styled-components"
+import { useEffect,useState } from "react"
+import axios from "axios"
 import {useNavigate } from "react-router-dom"
+import chalk from 'chalk';
 import exit_icon from "../imgs/exiticon.png"
 import plus_icon from "../imgs/plusicon.png"
 import minus_icon from "../imgs/minusicon.png"
 export default function Home(){
     const navigate=useNavigate();
+    const a=[
+        {date:"23/01",description:"Salário",ammount:4500,type:"deposit"},
+        {date:"17/01",description:"Café",ammount:12,type:"withdraw"},
+        {date:"08/01",description:"Bolão da firma",ammount:650,type:"deposit"},
+        {date:"05/01",description:"Dívidas",ammount:2200,type:"withdraw"},
+        {date:"01/01",description:"Jogatina",ammount:62,type:"deposit"}
+    ]
+    const [transactions,setTransactions]=useState([a]);
+   function CalculatesBalance(){
+
+   }
+   // useEffect(()=>{
+    //     const request=axios.get("localhost:5000/transactions");
+        
+    //     request.then(answer => {
+        
+    //         setTransactions(answer.data);
+            
+    
+    //     });
+    
+    //     request.catch(error => {
+            
+    //         console.log("error message");
+    //     });
+  //  },[])
+   
     function Navigate(path){
         navigate(path);
     }
@@ -15,7 +45,32 @@ export default function Home(){
         <img onClick={()=>Navigate("/")} className="exit-icon" src={exit_icon} alt="exit icon"/>
         </div>
         <div className="registry"> 
-        <div className="registry-placeholder">Não há registros de entrada ou saída</div>           
+        {transactions[0].map((transaction,index) =>transaction===undefined ? 
+
+        <div className="registry-placeholder">Não há registros de entrada ou saída</div>
+        
+    :
+            index!==transactions.length-1?
+        <div key={transaction.ammount+5}className="transaction">
+        <div key={transaction.date}className="grey">{transaction.date}</div>
+        <div key={transaction.description}className="black">{transaction.description}</div>
+        <div key={transaction.ammount}className={transaction.type}>{transaction.ammount.toFixed(2)}</div>
+        </div>
+    :
+    <>
+    <div key={transaction.ammount+5}className="transaction">
+    <div key={transaction.date}className="grey">{transaction.date}</div>
+    <div key={transaction.description}className="black">{transaction.description}</div>
+    <div key={transaction.ammount}className={transaction.type}>{transaction.ammount.toFixed(2)}</div>
+    </div>
+    <div className="balance-box">
+    <div className="balance-text">Saldo</div>
+    <div className="balance-number">XXXX,XX</div>
+    </div>
+    </>
+    )
+    }
+                   
         </div>
         <div className="buttons">
         <div onClick={()=>Navigate("/nova-entrada")}className="button">
@@ -57,13 +112,15 @@ export default function Home(){
     }
     .registry{
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: column;
+        align-items: center;
         width: 90vw;
         margin-left: 5vw ;
         margin-right: 5vw ;
         height:65vh ;
         background-color: white;
         border-radius: 5px;
+        position :relative;
     }
     .registry-placeholder{
         display: flex; 
@@ -74,9 +131,47 @@ export default function Home(){
         margin-right: 20%;
          /* margin-bottom: 40%; */
         margin-top: 40%; 
+        color:grey;       
+    }
+    .transaction{
+        display: flex;        
+        width: 95%;
+        margin-top: 10px; 
+        position:relative;      
+    }
+    .grey{
+
         color:grey;
+        margin-right: 5px;
+    }
+    .black{
+        margin-right: 5px;
+    }
+    .deposit{
+
+        color:green;
+        position:absolute;
+        right: 0px;
+    }
+    .withdraw{
+
+        color:red;
+        position:absolute;
+        right: 0px;
+    }
+    .balance-box{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        height: fit-content;
+        height: 15px ;
+        position:absolute;
+        bottom:10px;
         
-        
+    }
+    .balance-text{
+        font-weight: 700;
+        font-size: 20px;
     }
     .buttons{
         display: flex;
@@ -115,5 +210,3 @@ export default function Home(){
         width: 54%;
     }
     `
-
-  

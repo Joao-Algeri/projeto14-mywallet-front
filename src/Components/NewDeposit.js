@@ -1,9 +1,23 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { UseForm } from "./Useform";
+import UserContext from "../Contexts/UserContext";
+import dayjs from 'dayjs';
 export default function NewDeposit(){
+    const {user,setUser}=useContext(UserContext)
     const [form, handleForm] = UseForm({})
+    const navigate = useNavigate();
+    
     function SendForm(event) {
         event.preventDefault();
+        LoggingIn()
+    }
+    function LoggingIn(){
+        const data=dayjs().format("DD/MM")
+        const newForm=[{...form,date:data,type:"deposit"}]
+        // const request=axios.post("localhost:5000/transactions",newForm[0])           
+        navigate("/home")
     }
     return(
     <Content>
@@ -19,6 +33,7 @@ export default function NewDeposit(){
     const Content=styled.div`
     height: 100vh;
     background-color: #8c11be;
+    font-family: 'Roboto';   
     .title-top{
         display: flex;
         align-items: center;

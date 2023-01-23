@@ -8,14 +8,16 @@ export default function Signup() {
   const navigate = useNavigate();
   function SendForm(e) {
     e.preventDefault();
-//     LoggingIn()
+    LoggingIn()
   }
-//   function LoggingIn() {
-//     const newForm = [{ email: form.email, name: form.name, cpf: form.cpf, password: form.password }]
-//     const promise = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up", newForm[0])
+  function LoggingIn() {
+    const newForm = [{name: form.name, email: form.email, password: form.password }]
+//     const promise = axios.post("localhost:5000/users", newForm[0])
 //     promise.then(HandleSucess)
 //     promise.catch(HandleError)
-//   }
+console.log(newForm);
+navigate("/home")
+  }
 //   function HandleSucess() {
 //     navigate("/")
 //   }

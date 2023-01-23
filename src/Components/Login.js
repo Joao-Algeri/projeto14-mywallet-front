@@ -14,14 +14,15 @@ export default function Login() {
     LoggingIn()
   }
   function LoggingIn() {
-//     const promise = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/login", form)
+//     const promise = axios.post("localhost:5000/login", form)
 //     promise.then(HandleSucess)
 //     promise.catch(HandleError)
+
 navigate("/home")  
   }
 //   function HandleSucess(request) {    
-//     if (request.data.membership === null) {   
-//       const userData={name:request.data.name,token:request.data.token,image:"",perks:{},cardInfo:{}}
+//     if () {   
+//       const userData={name:request.data.name,token:request.data.token}
       
 //       setUser(userData);    
       
