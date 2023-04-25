@@ -14,7 +14,7 @@ export default function SignUpPage() {
   function LoggingIn() {
     if(form.password!==form.passwordCheck)return(alert("Digite sua senha corretamente"))
     const newForm = [{ name: form.name,email: form.email, password: form.password }]
-    const promise = axios.post(`https://mywallet-api-3ziv.onrender.com/sign-up`, newForm[0])
+    const promise = axios.post(`${process.env.REACT_APP_API_URL}/sign-up`, newForm[0])
     promise.then(HandleSucess)
     promise.catch(HandleError)
   }

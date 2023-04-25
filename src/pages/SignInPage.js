@@ -14,7 +14,7 @@ export default function SignInPage() {
     function LoggingIn() {
       const newForm = [{ email: form.email, password: form.password}]
       
-      const promise = axios.post(`https://mywallet-api-3ziv.onrender.com//sign-in`, newForm[0])
+      const promise = axios.post(`${process.env.REACT_APP_API_URL}/sign-in`, newForm[0])
       promise.then(HandleSucess)
       promise.catch(HandleError)
     }
