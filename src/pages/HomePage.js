@@ -1,8 +1,17 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
-
+// import axios from "axios";
+// import { useEffect, useContext, useState } from "react";
+// import { useParams, useNavigate } from "react-router-dom";
+// import { UseForm } from "./Useform";
 export default function HomePage() {
+//   const { user, setUser } = useContext(UserContext);
+//   const config = { headers: { Authorization: `Bearer ${user.token}` } }
+//   useEffect(() => {
+//     const requisicao = axios.get(`${process.env.REACT_APP_API_URL}/sign-in`, config);
+//     requisicao.then(resposta => { setSessao(resposta.data) })
+// }, [])
   return (
     <HomeContainer>
       <Header>
@@ -105,7 +114,7 @@ const ButtonsContainer = styled.section`
 const Value = styled.div`
   font-size: 16px;
   text-align: right;
-  color: ${(props) => (props.color === "positivo" ? "green" : "red")};
+  color: ${(props) => (props.color === "deposit" ? "green" : "red")};
 `
 const ListItemContainer = styled.li`
   display: flex;
